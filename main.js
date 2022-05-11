@@ -1,16 +1,18 @@
 document.getElementById('loginButton').addEventListener('click', function(){
 
-    axios.post('http://localhost%33000/users/login', {
-        username: document.getElementById('username'),
-        password: document.getElementById('password')
+    axios.post('http://localhost:3000/users/login', {
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
     },
     {
         headers:{
-            "content-type":"text/plain;charset=utf-8"
+            "content-type":"application/json"
         }
     })
         .then((res) => {
             console.log(res);
+
+            localStorage.setItem("loggedIn", JSON.stringify(res.data));
         })
         .catch((err) => {
             console.log(err);
